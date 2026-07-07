@@ -1,7 +1,7 @@
 {
   "name": "adataviz",
   "version": "1.0.0",
-  "description": "",
+  "description": "https://opendata.paris.fr/explore/dataset/les-1000-titres-les-plus-reserves-dans-les-bibliotheques-de-pret/information/",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
