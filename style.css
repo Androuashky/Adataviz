@@ -1,0 +1,141 @@
+@font-face {
+  font-family: jakarta;
+  src: url(/font/PlusJakartaSans-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: inter;
+  src: url(/font/Inter-VariableFont_opsz\,wght.ttf);
+}
+
+:root {
+    /* Couleurs */
+  --fond: #F0EDE8;
+  --carte: #FFFFFF;
+  --titre: #1B1F3B;
+  --texte: #4A4A6A;
+  --cl-bleu: #D6EEF8;
+  --cl-bleu2: #2E7BB5;
+  --bouton-rouge: #F25C6E;
+  --bouton-jaune: #F5E6A3;
+  --bouton-jaune-txt: #8A7A30;
+
+
+  /* Tailles de texte */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-md: 1rem;      /* 16px */
+  --text-lg: 1.75rem;   /* 28px */
+  --text-xl: 3rem;      /* 48px */
+
+  /* Poids */
+  --font-normal: 400;
+  --font-medium: 600;
+  --font-bold: 800;
+}
+
+/* Tablette */
+@media (max-width: 1024px) {
+  :root {
+    --text-sm: 0.875rem; /* 14px */
+    --text-md: 1rem;     /* 16px */
+    --text-lg: 1.5rem;   /* 24px */
+    --text-xl: 2.25rem;  /* 36px */
+  }
+
+  .carte-image {
+    width: 7em;
+    height: 10.5em;
+  }
+
+  .image-milieu {
+    width: 7.7em;
+    height: 11.5em;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root {
+    --text-sm: 0.75rem;  /* 12px */
+    --text-md: 0.875rem; /* 14px */
+    --text-lg: 1.25rem;  /* 20px */
+    --text-xl: 1.75rem;  /* 28px */
+  }
+
+  .carte-image {
+    width: 5em;
+    height: 7.5em;
+  }
+
+  .image-milieu {
+    width: 5.5em;
+    height: 8.25em;
+  }
+}
+
+body {
+  background-color: var(--fond);
+  margin: 2em 2em;
+}
+
+.bloc1 {
+  background-color: whitesmoke;
+  border: 0.5em solid whitesmoke;
+  border-radius: 0.6em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em;
+  gap:1em;
+}
+
+.bloc1texte {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bloc1image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bloc1 h1 {
+  font-family: jakarta;
+  transform: scaleY(1.3);
+  color: #2b2619d1;
+  letter-spacing: 0.05em;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.bloc1 p {
+  font-family: jakarta;
+  font-size: var(--text-sm);
+  color: #2b2619d1;
+}
+
+
+.sticker {
+  background-color: var(--cl-bleu);
+  color: var(--cl-bleu2);
+  font-family: inter;
+  font-size: 0.75rem;
+  font-weight:500;
+  display: inline-block;  
+  padding: 0.3em 0.8em;
+  border-radius: 3em;    
+}
+
+.carte-image {
+ width: 9em;
+ height: 13.5em;
+}
+.image-milieu {
+  width: 9.9em;
+  height: 14.85em;
+}
+
+

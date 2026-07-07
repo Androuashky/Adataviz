@@ -1,13 +1,15 @@
 {
   "name": "adataviz",
-  "version": "1.0.0",
-  "description": "https://opendata.paris.fr/explore/dataset/les-1000-titres-les-plus-reserves-dans-les-bibliotheques-de-pret/information/",
-  "main": "main.js",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module"
+  "devDependencies": {
+    "vite": "^8.1.1",
+    "vitest": "^4.1.10"
+  }
 }
