@@ -10,7 +10,7 @@
   <body>
     <section class="bloc1">
         <div class="bloc1texte">
-        <span class="sticker"> Top 100 extrait du Top 1000, Paris - 2022</span>
+        <span class="sticker"> 📈 Top 100 extrait du Top 1000, Paris - 2022</span>
         <h1>Les Bandes dessinées les plus empruntées à Paris</h1>
         <p>En 2022, les bibliothèques de Paris ont recensé les 1000 titres les plus empruntés par 
           leurs lecteurs. On a zoomé sur les bandes dessinées — mangas, BD jeunesse, BD adulte, comics — 
@@ -19,9 +19,9 @@
         </div>
 
         <div class="bloc1image">
-        <img class="carte-image" src="/image/naruto.jpg">
-        <img  class="image-milieu" src="/image/l'arabe du futur.jpg">
-        <img class="carte-image" src="/image/onepiece.jpg">
+          <img class="carte-image" src="/image/naruto.jpg">
+          <img  class="image-milieu" src="/image/l'arabe du futur.jpg">
+          <img class="carte-image" src="/image/onepiece.jpg">
         </div>
     </section>
 
@@ -32,17 +32,35 @@
         </form>
 
         <div class="bloc2carte">
-          <span class="carte">1000<br>Titres</span>
-          <span class="carte">218<br>Bande dessinée jeunesse</span>
-          <span class="carte">59<br>Bande dessinée ado</span>
-          <span class="carte">83<br>Bande dessinée adulte</span>
+          <span id ="bloc2violet" class="carte">
+            <h2>1000</h2>
+            <p>Titres</p>
+          </span>
+
+          <span id ="bloc2rose" class="carte">
+            <h2>218</h2>
+            <p>Bande dessinée jeunesse</p>
+          </span>
+
+          <span id ="bloc2jaune" class="carte">
+            <h2>59</h2>
+            <p>Bande dessinée ado</p>
+          </span>
+
+          <span  id ="bloc2vert" class="carte">
+            <h2>83</h2>
+            <p>Bande dessinée adulte</p>
+          </span>
         </div>
 
     </section>
+
+      <h2 class="titre"> Top 100 !</h2>
       <main class="main">
         <aside class="blocgauche">
           <fieldset class="filtre1">
-            <legend>Type de Bande Dessinée</legend>
+            <p class="filtres-label">Filtrer</p>
+            <p class="filtre-titre">Type de Bande Dessinée</p>
               <label>
                 <input type="checkbox" name="type-doc" value="tous" checked>
                 Tous
@@ -88,7 +106,9 @@
             </fieldset> -->
 
         </aside>
+
         <section class="top100">
+
             <article class="BD">
               <img>
               <h2>Titre de la BD</h2>
