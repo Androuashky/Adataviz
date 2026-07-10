@@ -5,6 +5,7 @@
     <link rel="icon" href="/image/iconlivre.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
     <title>Adataviz</title>
   </head>
   <body>
@@ -27,7 +28,7 @@
 
     <section class="bloc2">
         <form class="search-bar"> 
-          <input type="search" placeholder="Rechercher un titre, un auteur..." aria-label="Recherche">
+          <input type="text" id="search" placeholder="Rechercher un titre, un auteur..." aria-label="Recherche">
           <button type="submit">🔍</button>
         </form>
 
@@ -55,7 +56,15 @@
 
     </section>
 
-      <h2 class="titre"> Top 100 !</h2>
+      <div class="titre-section">
+          <p class="titre-label">Classement</p>
+        <div class="titre-ligne">
+          <span class="trait"></span>
+          <h2>Top 100</h2>
+          <span class="trait"></span>
+        </div>
+      </div>
+
       <main class="main">
         <aside class="blocgauche">
           <fieldset class="filtre1">
@@ -107,9 +116,9 @@
 
         </aside>
 
-        <section class="top100">
+        <section id="bloccarte" class="top100">
 
-            <article class="BD">
+            <!-- <article class="BD">
               <img>
               <h2>Titre de la BD</h2>
               <p> Auteur</p>
@@ -179,7 +188,7 @@
               <p> Auteur</p>
               <p>Type</p>
               <p>Nombre de reservation</p>
-            </article>
+            </article> -->
 
 
         </section>
@@ -187,6 +196,5 @@
     <footer>
 
     </footer>
-    <script src="main.js" defer></script>
   </body>
 </html>
