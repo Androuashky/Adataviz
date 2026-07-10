@@ -2,12 +2,13 @@ const bloccarte = document.getElementById('bloccarte')
 const button = document.querySelectorAll('.plus')
 const p = document.querySelectorAll('.cache')
 const search = document.getElementById('search') 
+const form = document.querySelector('.search-bar');
 
 
 async function chargerDonnees() {
   try {
     const response = await fetch("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/les-1000-titres-les-plus-reserves-dans-les-bibliotheques-de-pret/records?where=startswith(type_de_document%2C%22Bande%20dessinée%22)&order_by=rang&limit=100")
-    const data = await response.json()
+    const data = await response.json();
     return data.results
   } catch (erreur) {
     console.error("Erreur de chargement :", erreur.message)
@@ -20,36 +21,35 @@ async function chargerDonnees() {
 
 async function afficher (donnees) {
   const aff = donnees || await chargerDonnees();
-  bloccarte.innerHTML= ""
 
   for(let i =0; i<aff.length; i++) {
       const article = document.createElement("article");
       const img = document.createElement("img");
       const rang = document.createElement("p");
       const h2 = document.createElement("h2");
-      const button = document.createElement("button")
-      button.className = ("plus")
       const p = document.createElement("p");
       p.className = ("cache")
       const p2 = document.createElement("p");
       p2.className = ("cache")
       const p3 = document.createElement("p");
       p3.className = ("cache")
+      const button = document.createElement("button")
+      button.className = ("plus")
 
       rang.textContent = i+1
       h2.textContent= aff[i].titre;
-      button.textContent = "+"
       p.textContent= `Auteur: ${aff[i].auteur}`;
       p2.textContent= aff[i].type_de_document;
       p3.textContent= `Réservations: ${aff[i].reservations}`;
+      button.textContent = "+"
 
       article.appendChild(rang)
       article.appendChild(img)
       article.appendChild(h2);
-      article.appendChild(button)
       article.appendChild(p);
       article.appendChild(p2);
       article.appendChild(p3);
+      article.appendChild(button);
 
       bloccarte.appendChild(article);
       
@@ -63,11 +63,15 @@ async function afficher (donnees) {
 
 afficher();
 
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  });
 
 search.addEventListener("input",filterData);
 
-function filterData(e) {
+async function filterData(e) {
   const aff = await chargerDonnees();
+  bloccarte.innerHTML = ""
   const searchString = e.target.value.toLowerCase();
   const filteredArr = aff.filter(el =>
     el.titre.toLowerCase().includes(searchString) ||
@@ -75,6 +79,9 @@ function filterData(e) {
   );
   afficher(filteredArr); 
 }
+
+
+
 
 // const checkbox = document.getElementsByName('type-doc');
 
