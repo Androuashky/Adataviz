@@ -1,14 +1,17 @@
+
 const bloccarte = document.getElementById('bloccarte')
 const button = document.querySelectorAll('.plus')
 const p = document.querySelectorAll('.cache')
 const search = document.getElementById('search') 
 const form = document.querySelector('.search-bar');
 
+let globalData = []
 
 async function chargerDonnees() {
   try {
     const response = await fetch("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/les-1000-titres-les-plus-reserves-dans-les-bibliotheques-de-pret/records?where=startswith(type_de_document%2C%22Bande%20dessinée%22)&order_by=rang&limit=100")
     const data = await response.json();
+    globalData = data.results
     return data.results
   } catch (erreur) {
     console.error("Erreur de chargement :", erreur.message)
@@ -21,6 +24,7 @@ async function chargerDonnees() {
 
 async function afficher (donnees) {
   const aff = donnees || await chargerDonnees();
+  bloccarte.innerHTML = ""
 
   for(let i =0; i<aff.length; i++) {
       const article = document.createElement("article");
@@ -36,7 +40,7 @@ async function afficher (donnees) {
       const button = document.createElement("button")
       button.className = ("plus")
 
-      rang.textContent = i+1
+      rang.textContent = aff[i].rang
       h2.textContent= aff[i].titre;
       p.textContent= `Auteur: ${aff[i].auteur}`;
       p2.textContent= aff[i].type_de_document;
@@ -67,20 +71,34 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   });
 
-search.addEventListener("input",filterData);
+search.addEventListener("input", (e) => {
+  filterData(e)
+  e.preventDefault();
+});
 
-async function filterData(e) {
-  const aff = await chargerDonnees();
-  bloccarte.innerHTML = ""
+let dernierAppelId = 0;
+
+function filterData(e) {
+  const idActuel = ++dernierAppelId;
   const searchString = e.target.value.toLowerCase();
-  const filteredArr = aff.filter(el =>
-    el.titre.toLowerCase().includes(searchString) ||
-    el.auteur.toLowerCase().includes(searchString)
-  );
+
+  const filteredArr = globalData.filter(el => {
+   const titreCorrespond = el.titre && el.titre.toLowerCase().includes(searchString);
+    const auteurCorrespond = el.auteur && el.auteur.toLowerCase().includes(searchString);
+    return titreCorrespond || auteurCorrespond;
+  });
   afficher(filteredArr); 
 }
 
 
+async function init() {
+  const data = await chargerDonnees();
+  
+  const filterBdj = data.filter(el => el.type_de_document === "Bande dessinée jeunesse");
+  console.log(filterBdj);
+}
+
+init();
 
 
 // const checkbox = document.getElementsByName('type-doc');
@@ -105,9 +123,9 @@ async function filterData(e) {
 //   });
 // }
 
-// checkbox.forEach(c => c.addEventListener('change', trier));
+// checkbox.forEach(c => c.addEventListener('checked', trier));
 
-// const checkbox = document.getElementsByName('type-doc')
+
 
 // const trier = () => {
 //   const aff = await chargerDonnees()
@@ -117,7 +135,7 @@ async function filterData(e) {
 //   for(let i=0;i <aff.length;i++) {
 //   if (checkbox[2].checked) {
 //     if ( aff[i].type_de_document === "Bande dessinée ado") {
-//       console.log(afficher())
+      
 //     } 
 //   } if (checkbox[1].checked) {
 //     if ( aff[i].type_de_document === "Bande dessinée jeunesse") {
