@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "jest": "^30.4.2",
     "vite": "^8.1.1",
     "vitest": "^4.1.10"
   }
