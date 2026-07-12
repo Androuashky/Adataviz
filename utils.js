@@ -1,21 +1,36 @@
-let globalData = []
+export let dernierAppelId = 0;
 
-async function chargerDonnees() {
-  try {
-    const response = await fetch("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/les-1000-titres-les-plus-reserves-dans-les-bibliotheques-de-pret/records?where=startswith(type_de_document%2C%22Bande%20dessinée%22)&order_by=rang&limit=100")
-    const data = await response.json();
-    globalData = data.results
-    return data.results
-  } catch (erreur) {
-    console.error("Erreur de chargement :", erreur.message)
+export function filterData(e, globalData, afficher) {
+  const idActuel = ++dernierAppelId;
+  const searchString = e.target.value.toLowerCase();
+
+  const filteredArr = globalData.filter(el => {
+    const titreCorrespond = el.titre && el.titre.toLowerCase().includes(searchString);
+    const auteurCorrespond = el.auteur && el.auteur.toLowerCase().includes(searchString);
+    return titreCorrespond || auteurCorrespond;
+  });
+  afficher(filteredArr);
+}
+
+export async function filterByType(checkbox, chargerDonnees, afficher) {
+  const data = await chargerDonnees();
+
+  if (checkbox[0].checked) {
+    afficher();
+  }
+  else if (checkbox[1].checked) {
+    const filterBdj = data.filter(el => el.type_de_document === "Bande dessinée jeunesse");
+    afficher(filterBdj);
+  }
+  else if (checkbox[2].checked) {
+    const filterBdado = data.filter(el => el.type_de_document === "Bande dessinée ado");
+    afficher(filterBdado);
+  }
+  else if (checkbox[3].checked) {
+    const filterBdjadulte = data.filter(el => el.type_de_document === "Bande dessinée adulte");
+    afficher(filterBdjadulte);
+  }
+  else {
+    afficher([]);
   }
 }
-
-async function init() {
-  const data = await chargerDonnees();
-  
-  const filterBdj = data.filter(el => el.type_de_document === "Bande dessinée jeunesse");
-  console.log(filterBdj);
-}
-
-init();
