@@ -1,5 +1,7 @@
 # Adataviz
 
+voir le site en ligne (https://adatavizz-androu.netlify.app/)
+
 ## 🎯 Objectif
 
 Adataviz est une application web qui récupère un jeu de données réel depuis une API publique et l'affiche sous forme de cartes.
@@ -61,3 +63,5 @@ adataviz/
 ## ✍️ Auteur
 
 Projet réalisé dans le cadre de la formation **Ada Tech School**.
+
+
